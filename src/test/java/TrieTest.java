@@ -74,6 +74,29 @@ public class TrieTest {
         Assert.assertEquals(0, impltrie.howManyStartsWithPrefix("b"));
     }
 
+    @Test
+    public void checkTypicalCases(){
+
+        ImplTrie implTrie = new ImplTrie();
+        String[] words = {"aaa", "bbb", "a", "b", "c", "ac", "ab", "ba", "bb" };
+        setWordsInTrie(implTrie, words);
+
+        Assert.assertTrue(implTrie.contains("a"));
+        Assert.assertEquals(words.length , implTrie.size());
+
+        implTrie.remove("a");
+
+        Assert.assertFalse(implTrie.contains("a"));
+        Assert.assertEquals(words.length - 1, implTrie.size());
+
+        Assert.assertEquals(1, implTrie.howManyStartsWithPrefix("c"));
+
+        implTrie.remove("c");
+
+        Assert.assertEquals(0, implTrie.howManyStartsWithPrefix("c"));
+        Assert.assertEquals(words.length - 2, implTrie.size());
+
+    }
 
 
 }
